@@ -1,0 +1,121 @@
+/* Single timeline entry
+****************************************/
+
+.timeline-wrap {
+    margin-bottom: 25px;
+    font-size: 15px;
+    color: $textDark;
+    .timeline-dot {
+        padding: 0 7px;
+        .svg-inline--fa.fa-w-16 {
+            width: 0.6em;
+            color: $textLight;
+        }
+    }
+    .timeline-basics {
+        list-style: none;
+        padding: 0;
+        margin: 7px 0;
+        display: inline-block;
+        width: 40%;
+        li {
+            display: inline-block;
+        }
+        .timeline-divider {
+            margin: 0 0.2em;
+        }
+        .timeline-date {
+            display: inline;
+        }
+        .timeline-cntrls {
+            float: right;
+            display: none;
+            .timeline-cntrl {
+                display: inline-block;
+                margin: 0 6px;
+                color: $textLight;
+                opacity: 0.5;
+            }
+            .timeline-cntrl:hover {
+                cursor: pointer;
+                opacity: 1;
+            }
+        }
+    }
+    .timeline-basics:hover {
+        cursor: pointer;
+        color: $lighterBlue;
+        .timeline-cntrls {
+            display: block;
+        }
+    }
+    .timeline-notes {
+        margin-left: 2em;
+        color: $textLight;
+        font-size: 14px;
+    }
+    .cntrls-mobile {
+        display: none;
+    }
+}
+
+.job-timeline-entry:not(:last-child) {
+    position: relative;
+    .timeline-dot:after {
+        content: '';
+        width: 2px;
+        height: 45%;
+        position: absolute;
+        top: 1.8em;
+        left: 0.7em;
+        background-color: $textLight;
+        background-size: 2px 20%;
+        transition: 0.2s all;
+      }
+}
+
+/* Mobile styles
+****************************************/
+
+@media screen and (max-width: 1025px) {
+    .timeline-wrap {
+        .timeline-basics {
+            .timeline-date {
+                display: block;
+            }
+            .timeline-divider {
+                display: none;
+            }
+            .timeline-cntrls {
+                display: none;
+            }
+       }
+       .timeline-basics:hover {
+            cursor: initial;
+            color: initial;
+            .timeline-cntrls {
+                display: none;
+            }
+        }
+        .timeline-basics:active {
+            color: $lighterBlue;
+        }
+        .cntrls-mobile {
+            display: inline-block;
+            margin: 0.3em 0 0 2em;
+            font-size: 1.2em;
+        }
+        .timeline-cntrl {
+            padding-right: 1em;
+            opacity: 0.6;
+        }
+    }
+
+    .job-timeline-entry:not(:last-child) {
+        .timeline-dot:after {
+            display: none;
+            height: 55%;
+            top: 3.3em;
+          }
+    }
+}

@@ -1,0 +1,165 @@
+/* Job Wrap Accordion Styles
+****************************************/
+
+.job-item-label {
+    color: #666;
+    margin-right: 5px;
+    font-size: 15px;
+}
+
+.jobs-wrap {
+    text-align: left;
+    .crud-flag {
+        font-size: 19px;
+        background-color: white;
+        margin: 15px;
+        padding: 12px;
+    }
+    .sort-options {
+        list-style: none;
+        li {
+            display: inline-block;
+        }
+    }
+}
+
+.jobs-flow {
+    margin: 30px 15px 15px 15px;
+}
+
+.welcome-msg {
+    text-align: center;
+    padding: 3em;
+    font-size: 3em;
+    color: #aaa;
+}
+.welcome-icon {
+    display: block;
+    text-align: center;
+    margin: 1em auto;
+    font-size: 1.1em;
+    color: $puceText;
+    animation: riseAndSpin 9s ease-in-out infinite;
+    animation-delay: 5s;
+}
+
+.jobs-roll {
+    .loader {
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 10%;
+        }
+    }
+}
+
+
+.job-entry-header {
+    padding: 10px;
+    border-top: 1px solid $textLight;
+    border-left: 1px solid $textLight;
+    border-right: 1px solid $textLight;
+    border-radius: 2px;
+    background-color: #fff;
+    font-size: 22px;
+    .confidence-dot {
+        content: '';
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        -moz-border-radius: 7.5px;
+        -webkit-border-radius: 7.5px;
+        border-radius: 7.5px;
+        background-color: #ddd;
+     }
+    .divider {
+        font-weight: bold;
+        font-size: 25px;
+        padding: 0 7px;
+        color: $textLight;
+    }
+    .job-company {
+        color: $textLight;
+        font-style: italic;
+    }
+    .job-position {
+        color: $textDark;
+        margin-left: 10px;
+    }
+    .job-entry-chrono {
+        display: inline;
+        .inactive-btns-wrap {
+            position: relative;
+            display: inline-block;
+            margin-left: 1em;
+            display: none;
+            .inactive-btn {
+                border-radius: 4px;
+                padding: 3px;
+                border: 2px solid transparent;
+            }
+            .inactive-btn:hover {
+                border: 2px solid $puceText;
+            }
+        }
+        .job-entry-date {
+            font-size: 15px;
+            text-align: right;
+            float: right;
+            margin: 7px;
+            color: $puceText;
+        }
+    }
+    .job-entry-chrono:hover {
+        .freshness-msg {
+            display: none;
+        }
+        .inactive-btns-wrap {
+            display: inline-block;
+        }
+    }
+}
+
+.job-entry-header:hover {
+    box-shadow: -1px -1px 14px 0px #ddd;
+    cursor: pointer;
+}
+
+.job-entry-header:last-child {
+    border-bottom: 1px solid $textLight;
+}
+
+/* Animations
+****************************************/
+
+@keyframes riseAndSpin {
+    0%, 40% { transform: rotateY(0); }
+    60%, 100% { transform: rotateY(720deg); }
+}
+
+/* Mobile
+****************************************/
+
+.app-date {
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+    .jobs-roll {
+        margin: 80px 0 3em 0;
+    }
+    .job-entry-date {
+        display: none;
+    }
+    .job-entry-header {
+        .job-entry-chrono {
+            display: none;
+        }
+    }
+    .job-company {
+        display: block;
+    }
+    .welcome-msg {
+        padding: 2em 0 0 0;
+    }
+}

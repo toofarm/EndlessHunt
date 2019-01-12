@@ -1,0 +1,40 @@
+{
+  "name": "job-search-frontend-redux",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.2",
+    "@fortawesome/free-solid-svg-icons": "^5.2.0",
+    "@fortawesome/react-fontawesome": "^0.1.2",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.3",
+    "d3": "^5.7.0",
+    "firebase": "^5.0.4",
+    "multer": "^1.3.1",
+    "node-sass-chokidar": "^1.3.0",
+    "react": "^16.4.1",
+    "react-day-picker": "^7.1.10",
+    "react-dom": "^16.4.1",
+    "react-modal": "^3.5.1",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "react-slidedown": "^1.3.0",
+    "recompose": "^0.27.1",
+    "redux": "^4.0.0"
+  },
+  "scripts": {
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start-js": "PORT=5555 react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all build-css build-js",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.3"
+  }
+}

@@ -1,0 +1,7 @@
+node_modules/
+build/
+firebase.js
+*.css
+package-lock.json
+.vscode/
+App.test.js

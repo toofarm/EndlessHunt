@@ -1,0 +1,135 @@
+/* Single job entry styles
+****************************************/
+
+.single-job-entry {
+    margin: 0 auto;
+    display: block;
+    background-color: #F9F9F9;
+    a {
+        text-decoration: underline;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    .inactive-message {
+        color: $uiHighlightText;
+        font-style: italic;
+        display: none;
+    }
+    .jobs-txt-wrap {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: left;
+        margin: 0;
+        padding: 12px;
+        border: 2px solid #666;
+        border-radius: 4px;
+        width: 100%;
+        .job-item {
+            display: inline-block;
+            margin: 12px 0;
+            .resume-link {
+                margin: 0 0 12px 0;
+                font-size: 19px;
+            }
+            .job-datapoint {
+                color: #333;
+                background-color: rgba(145, 148, 156, 0);
+                font-size: 19px;
+                border: none;
+                transition: 0.2s all;
+                border-radius: 3px;
+                padding: 0 0 10px 0;
+                margin-bottom: 20px;
+                width: 100%;
+                display: inline-block;
+                word-break: break-all;
+                hyphens: auto;
+            }
+            .no-break {
+                word-break: keep-all;
+            }
+        }
+        .file-missing {
+            font-style: italic;
+            font-size: 15px;
+            color: $textLight;
+            margin-bottom: 15px;
+        }
+        .job-btns-wrap {
+            display: block;
+            text-align: right;
+            width: 100%;
+            .job-entry-btn {
+                color: #666;
+                margin: 12px 8px;
+                font-size: 18px;
+                background: none;
+                border: 2px solid #666;
+                border-radius: 4px;
+                transition: 0.3s all;
+            }
+            .job-entry-btn:hover {
+                color: $lighterBlue;
+                border: 2px solid $lighterBlue;
+                cursor: pointer;
+            }
+            .delete:hover {
+                color: $red;
+                border: 2px solid $red;
+            }
+        }
+    }
+}
+
+/* Inactive Toggle Styles
+****************************************/
+
+.inactive {
+    .job-entry-header {
+        background-color: #ddd;
+        opacity: 0.8;
+        .job-entry-date {
+            color: $textLight;
+        }
+    }
+    .inactive-message {
+        display: block;
+        margin: 1em 0;
+    }
+}
+
+.hide-inactive {
+    .inactive {
+        display: none;
+    }
+}
+
+.inactive-only {
+    .single-job-entry-wrap {
+        display: none;
+    }
+    .inactive {
+        display: block;
+    }
+}
+
+/* Mobile
+****************************************/
+
+@media screen and (max-width: 1024px) {
+    .single-job-entry {
+        .jobs-txt-wrap {
+            .job-item {
+                margin: 0;
+                .app-date {
+                    display: block;
+                }
+                .dummy-link {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

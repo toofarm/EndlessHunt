@@ -1,0 +1,316 @@
+/* Sort and Add New panels
+****************************************/
+
+.ui-panel-wrap {
+    margin: 25px 15px;
+    padding: 18px;
+    border: 2px solid $base;
+    border-radius: 4px; 
+    box-shadow: $innerGlow;
+    background-color: #fff;
+    position: relative;
+    label {
+        color: $textLight;
+        display: block;
+    }
+    form {
+        padding: 15px;
+    }
+    .required {
+        color: $red;
+        padding: 0 3px;
+    }
+    .main-fields {
+        label {
+            font-size: 25px;
+        }
+        input {
+            font-size: 25px;
+            padding: 7px;
+            background-color: #fff;
+            display: inline-block;
+        }
+    }
+    .cntrl-link {
+        display: inline-block;
+        background: none;
+        border: none;
+    }
+    .cntrl-link:hover {
+        cursor: pointer;
+        color: $lighterBlue;
+        text-decoration: underline;
+    }
+    .highlight {
+        color: $lighterBlue;
+        text-decoration: underline;
+      }
+    .ui-input {
+        border-bottom: 1px solid $textLight;
+        border-radius: 4px 4px 0 0;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        background: none;
+        padding: 5px 5px 5px 0;
+        font-size: 17px;
+        color: $textDark;
+        transition: 0.2s all;
+        display: block;
+        margin: 18px 0;
+        width: 45%;
+    }
+    .ui-input:hover {
+        background-color: #ddd;
+    }
+    .salary-input {
+        width: 41%;
+    }
+    .ui-info {
+        display: inline-block;
+        margin: 15px 0;
+        color: $red;
+    }
+    .ui-input-label {
+        margin-right: 12px;
+    }
+    .jobs-input-group {
+        display: block;
+        padding: 19px 0;
+        label {
+            font-size: 17px;
+        }
+        input {
+            display: inline-block;
+            margin-right: 25px;
+            width: 90%;
+        }
+        .jobs-input-wrapper {
+            display: inline-block;
+            width: 45%;
+        }
+        .jobs-dropdown {
+            position:relative;
+            width: 45%;
+            height: 25px;
+            margin:0 20px 0 0;
+            display: inline-block;
+            select {
+                position:absolute;
+                display: inline-block;
+                width:100%; 
+                height:25px;
+                line-height:20px;
+                margin:0;
+                padding: 12px;
+                font-size: 17px;
+            }
+        }
+        #jobs-source-input {
+            width: 50%;
+            margin-left: 25px;
+        }
+        textarea {
+            width: 90%;
+            border-radius: 4px;
+        }
+    }
+    .ui-file-input {
+        margin: 0 45px 0 0;
+        display: inline-block;
+        width: auto;
+        .file-input-label {
+            display: inline-block;
+            margin: 12px 0;
+            border-bottom: 1px solid $textDark;
+            padding: 4px;
+            font-size: 17px;
+            transition: 0.2s all;
+        }
+        .file-input-label:hover {
+            color: $lighterBlue;
+            cursor: pointer;
+            border-bottom: 1px solid $lighterBlue;
+        }
+        input {
+            display: none;
+        }
+        .delete-file {
+            color: $textLight;
+            border-radius: 2px;
+            padding: 1px 6px 2px 6px;
+            margin-left: 0.4em;
+        }
+        .delete-file:hover {
+            background-color: $mediumGrey;
+            color: $textDark;
+            cursor: pointer;
+        }
+    }
+    .btns-wrap {
+        text-align: right;
+        font-size: 1.2em;
+        button {
+            text-align: right;
+            margin: 20px 15px;
+        }
+        button:disabled {
+            cursor: inherit;
+            background-color: #ddd;
+            border: 2px solid #ddd;
+            pointer-events: none;
+        }
+        .btn-standard {
+            color: $textDark;
+            margin: 12px 8px;
+            padding: 7px;
+            background: none;
+            border: none;
+            transition: 0.3s all;
+        }
+        .btn-submit {
+            color: #fff;
+            margin: 12px 8px;
+            padding: 7px;
+            background-color: $lighterBlue;
+            border: 2px solid $lighterBlue;
+            border-radius: 4px;
+            transition: 0.3s all;
+        }
+        .btn-standard:hover {
+            color: $base;
+            cursor: pointer;
+        }
+        .btn-submit:hover {
+            background-color: $base;
+            border: 2px solid $base;
+            cursor: pointer;   
+        }
+    }
+}
+
+.job-form {
+    width: 100%;
+}
+
+.jobs-date-wrap {
+    margin: 30px 0;
+    .cntrl-link {
+        font-size: 21px;
+    }
+    .DayPicker-Month {
+        margin: 1rem 0 0 0;
+    }
+}
+
+.sort-panel {
+    h3 {
+        margin-bottom: 0.6em;
+    }
+    .col-md-5 {
+        padding-left: 0;
+    }
+    #radio-holder {
+        display: block;
+    }
+    .sort-group-wrap {
+        display: inline-block;
+        margin: 0.8em 2em 0 0;
+        width: 90%;
+    }
+    .sort-group-left {
+        border-right: 1px solid #ccc;
+    }
+    .label-inline {
+        display: block;
+        margin: 0.5em 1em;
+    }
+    input[type="radio"] {
+        margin-right: 0.5em;
+    }
+    .btns-wrap {
+        text-align: right;
+        button {
+            color: #666;
+            margin: 12px 8px;
+            font-size: 18px;
+            background: none;
+            border:none;
+            transition: 0.3s all;
+            display: inline-block;
+        }
+        button:hover {
+            cursor: pointer;
+            color: $lighterBlue;
+        }
+        .reset {
+            border: 2px solid #666;
+            border-radius: 4px;
+        }
+        .reset:hover {
+            border: 2px solid $lighterBlue;
+        }
+    }
+}
+
+#select-param {
+    width: 90%;
+}
+
+/* Mobile
+****************************************/
+
+@media screen and (max-width: 1025px) {
+    .sort-panel {
+        .label-inline {
+            margin-left: 0;
+            font-size: 1.2em;
+        }
+        .sort-group-left {
+            border-right: none;
+            border-bottom: 1px solid #ccc;
+        }
+        .sort-group-wrap {
+            select {
+                height: auto;
+                border: 1px solid $textDark;
+                margin-bottom: 0.3em;
+                padding: 4px 2px;
+            }
+        }
+        #select-param {
+            margin-bottom: 1em;
+        }
+    }
+    .ui-panel-wrap {
+        .jobs-input-group {
+            textarea {
+                width: 100%;
+            }
+        } 
+        label {
+            font-size: 1.2em;
+        }
+        .main-fields {
+            input {
+                width: 100%;
+            }
+        }
+    }
+    .job-add-new-panel {
+        .jobs-input-group {
+            .jobs-input-wrapper {
+                display: block;
+                width: 100%;
+            }
+            .jobs-dropdown {
+                width: 100%;
+                select {
+                    height: auto;
+                    border: 1px solid $textDark;
+                    margin-bottom: 0.3em;
+                }
+            }
+        }
+    } 
+}

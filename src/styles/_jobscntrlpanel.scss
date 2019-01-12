@@ -1,0 +1,175 @@
+/* Lefthand navigation
+****************************************/
+
+.jobs-cntrl-panel {
+    padding: 30px;
+    background-color: #eee;
+    min-height: 100vh;
+    height: auto;
+    display: inline-block;
+    h2 {
+        color: $lighterBlue;
+        font-size: 20px;
+        margin: 0 0 45px 0;
+    } 
+    .search-wrap {
+        position: relative;
+        .search-form {
+            position: relative;
+            border-radius: 22px;
+            padding: 4px;
+            margin: 0 0 1.7em 0;
+            border: 1px solid $textLight;
+            background-color: #fff;
+            overflow: hidden;
+            button {
+                background: none;
+                border: none;
+                position: absolute;
+                top: 0.27em;
+            }
+            button:hover {
+                cursor: pointer;
+            }
+            #jobs-search {
+                margin: 0 0 0 2em;
+                border: none;
+            }
+            #jobs-search:focus {
+                border: none;
+                outline: none;
+            }
+        }
+        .results-msg {
+            margin: -1em 0 1.5em 0;
+            font-size: 14px;
+            color: $base;
+            font-style: italic;
+        }
+    }
+    h3 {
+        padding: 0;
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+    h3:hover {
+        cursor: pointer;
+        color: $lighterBlue;
+    }
+    h3.highlight:hover {
+        color: $lighterBlue;
+    }
+    .delete-all:hover {
+        color: $red;
+    }
+    .react-slidedown.job-app-slidedown {
+        transition-duration: 0.3s;
+    }
+    .job-form {
+        margin-bottom: 20px;
+        input {
+            margin: 7px 0;
+            border-radius: 2px;
+            border: 1px solid $textLight;
+            padding: 5px;
+        }
+    }
+}
+
+.sticky {
+    position: fixed;
+    width: 19.5%;
+    top: 2em;
+}
+
+.cntrl-mobile-bar {
+    display: none;
+}
+
+/* Footer navigation for mobile
+****************************************/
+
+@media screen and (max-width: 1025px) {
+    .jobs-cntrl-panel {
+        display: none;
+    }
+    .cntrl-mobile-bar {
+        display: block;
+        position: fixed;
+        width: 100vw;
+        bottom: 0; 
+        z-index: 39;
+        background-color: $lighterBlue;
+        .cntrls-chev {
+            display: block;
+            margin: 7px auto;
+            font-size: 2.3em;
+            color: #222;
+            transition: 0.2s all ease;
+        }
+        .flip {
+            transform: rotate(180deg);
+        }
+        .cntrl-mobile {
+            background-color: $superLightBlue;
+            .cntrls-wrap-mobile {
+                padding: 0.8em 0;
+                .search-wrap {
+                    position: relative;
+                    .search-form {
+                        position: relative;
+                        border-radius: 22px;
+                        padding: 4px;
+                        margin: 0 0 1em 0;
+                        border: 1px solid $textLight;
+                        background-color: #fff;
+                        overflow: hidden;
+                        font-size: 1.3em;
+                        button {
+                            background: none;
+                            border: none;
+                            position: absolute;
+                            top: 0.27em;
+                        }
+                        button:hover {
+                            cursor: pointer;
+                        }
+                        #jobs-search {
+                            margin: 0 0 0 2em;
+                            border: none;
+                        }
+                        #jobs-search:focus {
+                            border: none;
+                            outline: none;
+                        }
+                    }
+                    .results-msg {
+                        margin: -1em 0 1.5em 0;
+                        font-size: 14px;
+                        color: $base;
+                        font-style: italic;
+                    }
+                }
+                ul {
+                    list-style: none;
+                    display: flex;
+                    padding: 0;
+                    li {
+                        display: inline-block;
+                        font-size: 1.2em;
+                        padding: 1em 0.5em;
+                        justify-content: space-around;
+                        flex-grow: 1;
+                        text-align: center;
+                        background: $mediumGrey;
+                        margin: 0 0.1em;
+                        border-radius: 4px;
+                    }
+                    li:active {
+                        background: $lightGrey;
+                    }
+                }
+            }
+        }
+    }
+}

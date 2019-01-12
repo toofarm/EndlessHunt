@@ -1,0 +1,115 @@
+/* Interaction box styles
+****************************************/
+
+.job-interaction-btn {
+    display: inline-block;
+    font-size: 16px;
+    color: $lighterBlue;
+    padding: 5px;
+    border-radius: 4px;
+    transition: 0.3s all;
+}
+
+.job-interaction-btn:hover {
+    color: $base;
+    cursor: pointer;
+}
+
+.job-interaction-form {
+    background-color: #fff;
+    border: 2px solid $textLight;
+    border-radius: 4px;
+    margin: 12px 0;
+    padding: 12px;
+    h4 {
+        color: $textLight;
+        font-size: 19px;
+        margin-bottom: 17px;
+    }
+    select {
+        margin-bottom: 12px;
+    }
+    .ui-input {
+        margin: 0 0 14px 14px;
+        display: block;
+        border-bottom: 1px solid #ccc;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+    }
+    .jobs-date-wrap {
+        margin: 12px 0;
+        .cntrl-link {
+            font-size: 17px;
+            text-decoration: underline;
+            background: none;
+            border: none;
+        }
+        .cntrl-link:hover {
+            color: $lighterBlue;
+            cursor: pointer;
+        }
+        .highlight {
+            color: $base;
+        }
+        .hightlight:hover {
+            color: $lighterBlue;
+        }
+    }
+    .interaction-dropdown {
+        display: block;
+        margin: 0 0 12px 0;
+    }
+    label {
+        color: $textLight;
+        font-size: 15px;
+        display: block;
+    }
+    textarea {
+        width: 100%;
+    }
+    .btn-wrap {
+        text-align: right;
+        margin: 7px 0;
+        .job-interaction-submit {
+            color: #fff;
+            text-align: right;
+            background-color: $lighterBlue;
+            border: none;
+            border-radius: 4px;
+            padding: 7px;
+            transition: 0.2s all;
+        }
+        .job-interaction-submit:hover {
+            background-color: $base;
+            cursor: pointer;
+        }
+        button:disabled {
+            cursor: inherit;
+            background-color: #ddd;
+            pointer-events: none;
+        }
+    }
+}
+
+/* Mobile
+****************************************/
+@media screen and (max-width: 1024px) {
+    .job-interaction-form {
+        #interaction-dropdown {
+            border: 1px solid $textDark;
+            padding: 0.2em 0.5em;
+            width: 100%;
+        }
+        .DayPicker {
+            width: 95%;
+            .DayPicker-Month {
+                background: #eee;
+                box-shadow: 5px 5px 5px #666;
+            }
+            .DayPicker-NavBar {
+                background: #eee;
+            }
+        }
+    }
+}

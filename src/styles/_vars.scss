@@ -1,0 +1,20 @@
+//App colors
+$base: rgba(13, 115, 224, 1.0);
+$lighterBlue: #5299E5;
+$superLightBlue: rgb(141, 193, 248);
+$red: rgba(174, 4, 0, 1.0);
+$lightGrey: rgba(249, 250, 251, 1.0);
+$mediumLightGrey: rgb(228, 230, 231);
+$mediumGrey: #eee;
+$textDark: #354049;
+$textLight: rgb(110, 115, 119);
+$puceText: #E0930D;
+$uiHighlightText: #6067C6;
+
+//Box shadow
+$innerGlow: -1px -1px 2px #ddd;
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400,700|Roboto');
+$logoFont: 'Nunito Sans', sans-serif;
+$bodyFont: 'Roboto', sans-serif;

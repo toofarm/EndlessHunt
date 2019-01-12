@@ -1,0 +1,137 @@
+/* Open/Close Transition + Amendments
+****************************************/
+
+.ReactModal__Content {
+    opacity: 0;
+    .ui-panel-wrap {
+        border: none;
+        box-shadow: none;
+    }
+  }
+  
+.ReactModal__Content--after-open {
+    opacity: 1;
+    transition: opacity 200ms;
+}
+  
+.ReactModal__Content--before-close {
+  opacity: 0;
+}
+
+.ReactModal__Overlay {
+    z-index: 105;
+}
+
+/* Modal styles
+****************************************/
+
+h2 {
+    margin-bottom: 1.5em;
+    border-bottom: 2px solid rgb(53, 64, 73);
+    padding-bottom: 1em;
+}
+
+.modal-form-wrap {
+    .inactive-check {
+        font-size: 1.1em;
+    }
+    #inactive {
+        margin-right: 1em;
+    }
+    .jobs-input-group {
+        .cntrl-link {
+            font-size: 17px;
+        }
+        .modal-delete-btn {
+            color: #666;
+            margin: 12px 0;
+            font-size: 18px;
+            background: none;
+            border: 2px solid #666;
+            border-radius: 4px;
+            transition: 0.3s all;
+        }
+        .modal-delete-btn:hover {
+            color: $red;
+            border: 2px solid $red;
+            cursor: pointer;
+        }
+    }
+}
+
+.btn-wrap {
+    text-align: right;
+    margin: 7px 0;
+    .modal-submit-btn {
+        color: #fff;
+        text-align: right;
+        background-color: $lighterBlue;
+        border: none;
+        border-radius: 4px;
+        padding: 7px;
+        transition: 0.2s all;
+    }
+    .modal-submit-btn:hover {
+        background-color: $base;
+        cursor: pointer;
+    }
+    .modal-cancel-btn {
+        display: inline-block;
+        font-size: 16px;
+        color: $lighterBlue;
+        padding: 5px 5px 5px 1em;
+        border-radius: 4px;
+        transition: 0.3s all;
+        border: none;
+        background: none;
+    }
+    .modal-cancel-btn:hover {
+        color: $base;
+        cursor: pointer;
+    }
+    button:disabled {
+        cursor: inherit;
+        background-color: #ddd;
+        pointer-events: none;
+    }
+}
+
+/* Mobile styles
+****************************************/
+
+@media screen and (max-width: 1025px) {
+    .ReactModal__Content {
+        width: 95% !important;
+    }
+    .modal-inner {
+        padding: 0;
+    }
+    .ui-panel-wrap {
+        .modal-form-wrap {
+            .jobs-input-group {
+                .jobs-input-wrapper {
+                    display: block;
+                    width: 100%;
+                }
+                .jobs-dropdown {
+                    width: 100%;
+                    select {
+                        height: auto;
+                        border: 1px solid $textDark;
+                    }
+                }
+                #jobs-notes {
+                    width: 100%;
+                }
+            }
+            .btn-wrap {
+                font-size: 1.2em;
+                padding-top: 0.3em;
+                .modal-cancel-btn {
+                    font-size: 1.2em;
+                    background: none;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,262 @@
+@import 'vars'; 
+@import 'loginform';
+@import 'jobscntrlpanel';
+@import 'jobslist';
+@import 'jobentry';
+@import 'profile';
+@import 'jobsorderspanels';
+@import 'jobaddinteraction';
+@import 'jobtimeline';
+@import 'editmodal';
+@import 'landingpage';
+@import 'stats';
+@import 'wishlistpanel';
+
+/* Bootstrap fixes
+****************************************/
+.row {
+  margin: auto 0 !important;
+  padding: auto 0;
+}
+
+html {
+  background-color: $lightGrey;
+  // This only works in a couple browsers, but it's a good deal when it does
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $lightGrey;
+  font-family: $bodyFont;
+  color: $textDark;
+  margin: 0;
+  padding: 0;
+}
+
+/* Core styles
+****************************************/
+
+h1 {
+  font-family: $logoFont;
+}
+
+h1 a:hover {
+  color: $lighterBlue;
+}
+
+h2 {
+  font-size: 1.8em;
+}
+
+a {
+  color: $textDark;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $lighterBlue;
+  text-decoration: none;
+}
+
+.main-wrap {
+  text-align: center;
+  background-color: $lightGrey;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+header {
+  background-color: white;
+  height: 75px;
+  padding: 20px;
+  position: relative;
+  border-bottom: 1px solid $textLight;
+  box-shadow: 1px 3px 3px #ccc;
+  z-index: 100;
+  a {
+    color: $base;
+  }
+}
+
+#app-title {
+  font-size: 2em;
+  color: $base;
+  .header-spice {
+    color: $textDark;
+    font-style: italic;
+  }
+}
+
+#app-title:hover {
+  text-decoration: none;
+}
+
+.error {
+  color: $red;
+  font-style: italic;
+  font-size: 0.8em;
+  margin-top: 1em;
+}
+
+.em-sent {
+  margin-top: 1em;
+  font-size: 0.8em;
+}
+
+.main-nav {
+  list-style: none;
+  position: absolute;
+  bottom: 15px;
+  right: 25px;
+  padding: 0;
+  margin-bottom: 0;
+  li {
+    display: inline-block;
+    margin-right: 15px;
+    a {
+      text-decoration: none;
+      font-size: 18px;
+      transition: 0.3s all;
+      color: $textDark;
+      background-color: transparent;
+      border: none;
+      display: inline;
+      cursor: pointer;
+    }
+    a:hover {
+      border-bottom: 1px solid $textLight;
+      color: $textLight;
+    }
+  }
+}
+
+li.current-page {
+  border-bottom: 1px solid $textLight;
+  a:hover {
+    border-bottom: none;
+  }
+}
+
+.ui-info {
+  font-style: italic;
+  color: $red;
+}
+
+.dummy-link {
+  margin: 0 8px;
+}
+
+.dummy-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.ghost-btn {
+  color: $textDark;
+  margin: 12px 8px;
+  padding: 7px;
+  font-size: 22px;
+  background: none;
+  border: 2px solid #666;
+  border-radius: 4px;
+  transition: 0.3s all;
+}
+
+.ghost-btn:hover {
+  color: $lighterBlue;
+  border: 2px solid $lighterBlue;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: rgba(102,102,102,0.2);
+}
+
+.loader {
+  margin: 150px auto;
+  .spin-loader {
+    width: 33%;
+    animation: loader-spin 2s infinite linear;
+  }
+}
+
+/* Animations
+****************************************/
+
+@keyframes loader-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive nav styles
+****************************************/
+
+.nav-mobile-wrap {
+  display: none;
+}
+
+@media screen and (max-width: 1025px) {
+  header {
+    position: fixed;
+    width: 100%;
+    height: 55px;
+    #app-title {
+      font-size: 1.3em;
+    }
+    .nav-mobile-wrap {
+      display: block;
+      .header-spice {
+        color: #222;
+        font-style: italic;
+        padding-right: 0.2em;
+      }
+      .mobile {
+        position: fixed;
+        padding: 3em 0.5em;
+        bottom: 0;
+        right: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #eee;
+          li {
+            display: block;
+            text-align: right;
+            font-size: 2.5em;
+            padding: 0.5em 0;
+            a {
+              font-size: 0.8em;
+            }
+          }
+          .mobile-nav-close {
+            font-size: 1em;
+            position: absolute;
+            top: 0;
+            right: 1em;
+            margin: 0;
+            padding-top: 1.5em;
+            transition: 0.2s all ease-in-out;
+          }
+          .mobile-nav-close:active {
+            transform: scale(1.2);
+          }
+      }
+      #app-title-mobile {
+        padding-right: 0.5em;
+        display: inline-block;
+        font-size: 1.3em;
+      }
+      .mobile-nav-icon {
+        float: right;
+        display: inline-block;
+        font-size: 1.5em;
+      }
+    }
+  }
+  .desktop {
+    display: none;
+  }
+  textarea {
+    border: 1px solid $textDark;
+    border-radius: 3px;
+  }
+}

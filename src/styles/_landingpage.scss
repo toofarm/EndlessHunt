@@ -1,0 +1,164 @@
+/* Hero Image
+****************************************/
+
+.landing-hero-wrap {
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    .gradient-overlay {
+        background-image: linear-gradient(90deg, #ccc, transparent);
+        height: 100vh;
+    }
+    .landing-header {
+        left: 2em;
+        position: absolute;
+        top: 4em;
+        color: #222;
+        font-size: 3.5em;
+        font-style: italic;
+        width: 40%;
+        color: $base;
+    }
+}
+
+
+/* Login Panel
+****************************************/
+
+.login-panel-wrap {
+    position: absolute;
+    right: 8%;
+    top: 15%;
+    width: 25em;
+    .ui-info {
+        font-size: 0.9em;
+        margin-bottom: 0.8em;
+    }
+    .panel-nav {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        margin-bottom: 0;
+        li {
+            display: inline-block;
+            flex-grow: 1;
+            padding: 1em;
+            background-color: $mediumLightGrey;
+        }
+        li:hover {
+            cursor: pointer;
+            color: $lighterBlue;
+            background-color: $mediumGrey;
+        }
+        .active {
+            background-color: #fff;
+        }
+        .active:hover {
+            background-color: #fff;
+            color: initial;
+        }
+    }
+    .login-panel-inner {
+        padding: 2em;
+        background-color: #fff;
+        height: 31em;
+        h2 {
+            margin-bottom: 0.6em;
+        }
+    }
+}
+
+/* Mobile Styles
+****************************************/
+
+@media screen and (max-width: 1024px) {
+    .landing-meta-wrap {
+        padding-top: 75px;
+    }
+    .landing-wrap-mobile {
+        height: 150vh;
+        background-position: top;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: auto;
+        .landing-mobile-inner { 
+            background-image: linear-gradient(120deg, #ccc, transparent);
+            height: 170vh;
+            .mobile-headline {
+                text-align: center;
+                color: $base;
+                border: none;
+                font-style: italic;
+                font-size: 3em;
+                padding: 1em 0.5em;
+                line-height: 1.8em;
+                font-weight: bolder;
+            }
+            .benefits-wrap {
+                background: $lighterBlue;
+                -webkit-clip-path: polygon(100% 0, 100% 38%, 100% 100%, 0 100%, 0 7%);
+                clip-path: polygon(100% 0, 100% 38%, 100% 100%, 0 100%, 0 7%);
+                ul {
+                    margin: 0;
+                    padding: 3em 0 5em 0;
+                    list-style: none;
+                    li {
+                        padding: 1em 0;
+                        border-bottom: 1px solid #eee;
+                        width: 90%;
+                        margin: 0 auto;
+                        .benefits-icon {
+                            font-size: 3em;
+                            color: #eee;
+                        }
+                        .benefits-inner {
+                            text-align: center;
+                            padding: 1em 2em;
+                            font-size: 1.3em;
+                            color: $textDark;
+                        }
+                    }
+                }
+            }
+            .sign-up-btn {
+                padding: 0.5em 0;
+                font-size: 1.5em;
+                padding: 0.5em 0;
+                font-size: 1.5em;
+                z-index: 1000;
+                position: fixed;
+                color: #eee;
+                bottom: 0;
+                width: 100%;
+                background: linear-gradient(270deg, $superLightBlue, $base);
+                background-size: 400% 400%;
+                -webkit-animation: ButtonShimmer 6s ease infinite;
+                -moz-animation: ButtonShimmer 6s ease infinite;
+                animation: ButtonShimmer 6s ease infinite;
+            }
+            .hide {
+                display: none;
+            }
+        }
+    }
+}
+
+/* Animations
+****************************************/
+
+@-webkit-keyframes ButtonShimmer {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes ButtonShimmer {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes ButtonShimmer { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}

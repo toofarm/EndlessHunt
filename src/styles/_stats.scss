@@ -1,0 +1,145 @@
+/* Job Stats Page
+****************************************/
+
+.stats-wrap {
+    h2 {   
+        text-align: left;
+        margin: 1em 0;
+        font-size: 2.5em;
+        padding-bottom: 0.2em;
+        color: $textDark;
+        font-family: $logoFont;
+    }
+    .stats-visual-wrap {
+        font-family: $bodyFont;
+        text-align: left;
+        padding: 2em;
+        h3 {
+            text-align: left;
+            font-size: 3em;
+            color: $textLight;
+            font-style: italic;
+        }
+        h4 {
+            font-size: 1.8em;
+            margin: 0 0 1.5em 0;
+            color: $textDark;
+        }
+        .count {
+            font-size: 1.7em;
+            color: $textDark;
+            font-style: normal;
+        }
+        .inactive-ratio {
+            padding: 1em 0;
+            font-size: 2em;
+            font-style: italic;
+            color: $textLight;
+            .ratio-text {
+                font-style: normal;
+                color: $textDark;
+                font-size: 1.3em;
+            }
+        }
+    }
+    .loader {
+        img {
+            width: 8%;
+        }
+        .welcome-msg {
+            padding: 0 0.5em 1em 0.5em;
+        }
+    }
+}
+
+/* Confidence pie chart
+****************************************/
+
+.pie-chart-shell {
+    div.tooltip {                                                                                                   
+        box-shadow: 0 0 5px #999999;                                    
+        color: #333;                                                    
+        display: none;                                                  
+        font-size: 12px;                                                
+        left: 720px;                                                    
+        padding: 10px;                                                  
+        position: absolute;                                             
+        text-align: center;                                             
+        top: 95px;                                                      
+        width: 120px;                                                    
+        z-index: 5000;
+        background: rgb(221, 221, 221);
+        opacity: 1;
+        .label {
+            font-size: 1.3em;
+        }
+        .count, .percent {
+            font-size: 1em;
+            font-style: italic;
+        }             
+      } 
+}
+
+/* Salary bar chart
+****************************************/
+
+#bar-chart {
+    div {
+        background-color: $base;
+        color: #fff;
+        margin: 0.5em 0;
+        padding: 0.5em;
+    }
+    div:hover {
+        background-color: $puceText;
+    }
+}
+
+/* Confidence scatter plot
+****************************************/
+
+.dot {
+    stroke: #000;
+  }
+  
+.tooltip-sp {
+    position: absolute;
+    width: 150px;
+    height: 28px;
+    pointer-events: none;
+    font-size: 1em;
+    .sp-tp-label {
+        font-size: 0.7em;
+    }
+  }
+  
+  .label-sp {
+      font-size: 0.8em;
+  }
+
+/* Mobile
+****************************************/
+
+@media screen and (max-width: 1024px) {
+    .stats-wrap {
+        .loader {
+            img {
+                width: 25%;
+            }
+        }
+        .welcome-msg {
+            padding: 3em 0.3em 1em 0.3em;
+        }
+        .stats-visual-wrap {
+            h4, h3, .inactive-ratio {
+                text-align: center;
+            }
+            #pie-chart {
+                text-align: center;
+            }
+        }
+        .top-item-wrap {
+            margin-top: 80px;
+        }
+    }
+}

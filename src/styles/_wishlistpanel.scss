@@ -1,0 +1,149 @@
+//////////////////
+//////////// Wishlist panel styles
+/////////////////
+
+.wishlist-add-item-btn {
+    color: $lighterBlue;
+    margin-bottom: 1em;
+}
+
+.wishlist-add-item-btn:hover {
+    color: $base;
+    cursor: pointer;
+}
+
+// This button submits the 'new wishlist item' form
+.wishlist-add-btn {
+    color: white;
+    display: inline-block;
+    text-align: center;
+    border-radius: 5px;
+    padding: 0.5em;
+    background-color: $lighterBlue;
+    transition: 0.2s all;
+}
+
+.wishlist-add-btn:hover {
+    background-color: $base;
+    cursor: pointer;
+}
+
+.wishlist-add-btn:disabled {
+    background-color: #CCC;
+    pointer-events: none; 
+}
+
+.add-wishlist-item-meat {
+    margin-bottom: 2em;
+}
+
+.ui-msg {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.2em;
+    color: $textLight;
+}
+
+/* Wishlist item styles
+****************************************/
+
+.wishlist-item {
+    padding: 10px;
+    border: 2px solid $puceText;
+    border-radius: 5px;
+    background-color: rgba(224, 147, 13, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 1em;
+    .wishlist-items-wrap {
+        display: inline-flex;
+        width: 80%;
+        .wishlist-input {
+            margin: 0 0.4em;
+            flex-grow: 1;
+            label {
+                font-size: 0.8em;
+                margin-bottom: 0;
+            }
+            input {
+                background-color: $lightGrey;
+                border-style: solid;
+                padding: 3px;
+                border: none;
+                border-bottom: 1px solid $puceText;
+                margin: 0;
+                width: 100%;
+                color: $textDark;
+            }
+            input:read-only {
+                background: none;
+            }
+        }
+    }
+    .wishlist-item-btns {
+        text-align: right;
+        display: inline-block;
+        right: 20px;
+        position: absolute;
+        .wishlist-apply {
+            color: $lighterBlue;
+            font-weight: bolder;
+            border: 2px solid $lighterBlue;
+            position: relative;
+            right: 30px;
+            border-radius: 4px;
+            padding: 3px 10px;
+            background: none;
+            transition: 0.2s all linear;
+        }
+        .wishlist-apply:hover {
+            color: #fff;
+            background-color: $base;
+            border: 2px solid $base;
+            cursor: pointer;
+        }
+        .wishlist-delete {
+            border: none;
+            color: #6e7377;
+            border-radius: 3px;
+            right: 15px;
+            font-weight: bolder;
+            -webkit-transition: 0.2s all ease;
+            -o-transition: 0.2s all ease;
+            transition: 0.2s all ease;
+            background: none;
+            position: relative;
+            padding: 4px 7px;
+        }
+        .wishlist-delete:hover {
+            cursor: pointer;
+            background-color: #ddd;
+        }
+    }
+}
+
+/* Wishlist mobile styles
+****************************************/
+
+@media screen and (max-width: 1025px) { 
+    .wishlist-item {
+        .wishlist-items-wrap {
+            display: inline-block;
+            .wishlist-input {
+                display: block;
+                margin: 0.4em;
+            }
+        }
+        .wishlist-item-btns {
+            display: block;
+            right: 0;
+            position: relative;
+            margin-top: 1em;
+            .wishlist-apply:active {
+                color: $base;
+                border: 2px solid $base;
+            }
+        }
+    }
+}
