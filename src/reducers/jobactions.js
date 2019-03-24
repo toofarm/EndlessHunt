@@ -10,6 +10,7 @@ const INITIAL_STATE = {
   });
   
   function controlsReducer(state = INITIAL_STATE, action) {
+    console.log(action)
     switch(action.type) {
       case 'TOGGLE_UI_CONTROLS' : {
         return applySetOrder(state, action);

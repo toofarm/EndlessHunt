@@ -329,9 +329,9 @@
 .app-date {
   display: none; }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1000px) {
   .jobs-roll {
-    margin: 80px 0 3em 0; }
+    margin: 70px 0 3em 0; }
   .job-entry-date {
     display: none; }
   .job-entry-header .job-entry-chrono {
@@ -1096,7 +1096,7 @@ h2 {
 ****************************************/
 @media screen and (max-width: 1024px) {
   .landing-meta-wrap {
-    padding-top: 75px; }
+    padding-top: 55px; }
   .landing-wrap-mobile {
     height: 150vh;
     background-position: top;

@@ -59,6 +59,7 @@ class JobsCntrlPanelMobile extends Component {
     // Scroll to top of page after click button
     document.body.scrollTop = 0 // For Safari
     document.documentElement.scrollTop = 0
+    this.toggleCntrlsPanel()
   }
 
   clearJobs () {

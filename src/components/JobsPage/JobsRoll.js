@@ -65,6 +65,8 @@ class JobsRoll extends Component {
   }
 
   componentWillReceiveProps(props) {
+    console.log('Logging order from Jobs Roll')
+    console.log(props.order)
     if (props.jobs) {
       this.setState({
         loading: false
@@ -84,9 +86,7 @@ class JobsRoll extends Component {
             <JobsSort userId={this.state.userId} />
           ) : this.props.order === "wishlist" ? (
             <WishlistPanel userId={this.state.userId} />
-          ) : (
-            ""
-          )}
+          ) : ("")}
         </SlideDown>
         {this.state.loading ? (
           <div className="loader">
