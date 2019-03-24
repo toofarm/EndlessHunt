@@ -4,12 +4,12 @@ NOTE: You will have to create your own Firebase account and replace the 'config'
 
 The ReactJS build was initialized through Create React App.
 
-Dev
+##Dev
 
-npm i
+__npm i__
 
-npm start
+__npm start__
 
-Build
+##Build
 
-npm run build
+__npm run build__
