@@ -4,6 +4,8 @@ import JobTimeline from './Timeline/JobTimeline'
 import { toggleModal } from '../../actions'
 import { formatSalary } from '../../constants/utilities'
 
+import { jobPanelDatalayerPush } from '../../constants/utilities'
+
 import { storage, } from '../../firebase';
 
 import { connect } from 'react-redux'
@@ -55,6 +57,9 @@ class JobEntry extends Component {
   editModalOpen () {
     const { toggleModal } = this.props
     let job = this.props.job
+    let jobTitle = job.position
+    let jobCompany = job.company 
+    jobPanelDatalayerPush('Edit Job', jobTitle, jobCompany)
     job['userId'] = this.props.userId
     job['jobId'] = this.props.id
     toggleModal(true, job)
@@ -164,7 +169,9 @@ class JobEntry extends Component {
                 />
               <JobAddInteraction 
                 id={this.props.userId} 
-                jobId={this.props.id} />
+                jobId={this.props.id} 
+                title={this.props.job.position} 
+                company={this.props.job.company} />
               <div className="job-btns-wrap">
               <button className="job-entry-btn"
                     onClick={this.editModalOpen}>

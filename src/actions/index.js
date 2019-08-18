@@ -1,16 +1,17 @@
 //////////JOBS\\\\\\\\\\\\
 
-export const getJobs = (id) => {
+export const getJobs = (id) => { 
     return {
         type: 'GET_JOBS',
         id: id
     }
 }
 
-export const setUserJobs = (jobs) => {
+export const setUserJobs = (jobs, sort) => {
     return {
         type: 'SET_USER_JOBS',
-        jobs: jobs
+        jobs: jobs,
+        sort
     }
 }
 
@@ -64,12 +65,51 @@ export const reorderJobs = (id, order, jobs) => {
     }
 }
 
+///////////SORT STATE\\\\\\\\\\\\\
+
+export const getSortState = (id) => {
+    return {
+        type: 'GET_SORT_STATE',
+        id
+    }
+}
+
+export const updateSortState = (id, data) => {
+    return {
+        type: 'UPDATE_SORT_STATE',
+        data,
+        id
+    }
+}
+
+export const toggleSortState = (order) => {
+    return {
+        type: 'SET_SORT_STATE',
+        order
+    }
+}
+
 ///////////INACTIVE STATE\\\\\\\\\\\\\
+
+export const getInactiveState = (id) => {
+    return {
+        type: 'GET_INACTIVE_STATE',
+        id
+    }
+}
+
+export const updateInactiveState = (id, data) => {
+    return {
+        type: 'UPDATE_INACTIVE_STATE',
+        data,
+        id
+    }
+}
 
 export const toggleInactiveState = (order) => {
     return {
         type: 'SET_INACTIVE_STATE',
-        order: order
+        order
     }
 }
 

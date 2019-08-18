@@ -5,9 +5,18 @@ import { setUserJobs } from '../actions'
 const jobsUpdate = (id, next) => {
     users.onceGetUserJobs(id).then(snapshot => {
         let jobs = snapshot.val()
-        next(setUserJobs(jobs))
+        setWithSortOrder(id, jobs, next)
     }).catch(err => {
         console.log(err.message)
+    })
+}
+
+const setWithSortOrder = (id, jobs, next) => {
+    users.getSortPreference(id).then(sortSnapshot => {
+        let sort = sortSnapshot.val()
+        next(setUserJobs(jobs, sort))
+    }).catch(err => {
+        console.log(err)
     })
 }
 
@@ -21,9 +30,10 @@ export const handleUserJobs = store => next => action => {
             for (let i = 0; i < action.jobIds.length; i++) {
                 users.getOneJob(action.id, action.jobIds[i]).then( (snapshot) => {
                     jobs[action.jobIds[i]] = snapshot.val()
-                    next(setUserJobs(jobs))
                 })
             }
+            console.log(jobs)
+            setWithSortOrder(action.id, jobs, next)
             break
         case 'ADD_JOB':
             users.doCreateJob(action.id, action.ref, action.data).then((snapshot) => {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+  import React, { Component } from 'react';
 import Modal from 'react-modal';
 
 import { SlideDown } from 'react-slidedown'
@@ -222,7 +222,6 @@ class EditModal extends Component {
   // We pull the interactions object because if the user updates the original application date we'll have to update the timeline event to reflect that new data
   getFirstInteraction (userId, jobId) {
     const { getTimelineEvents } = this.props
-    let appDate
     getTimelineEvents(userId)
     let interactions = this.props.interactions
     for (var key in interactions) {
@@ -356,6 +355,15 @@ class EditModal extends Component {
                 <h2>Make your changes</h2>
                 <div className="modal-form-wrap">
                 {isInvalid && <div className="ui-info">Job entries need a job title, company name, and application date</div>}
+                <label className="inactive-check"
+                        htmlFor="inactive">
+                        <input type="checkbox" id="inactive" name="inactive" 
+                        checked={this.props.job ? this.state.inactive : false}
+                        onChange={e => this.setState(byPropKey('inactive', e.target.checked))}
+                        />
+                        <span className="checkmark"></span>
+                        Application closed  
+                    </label>
                 <div className="job-form">
                 <div className="jobs-input-group">
                     <div className="jobs-input-wrapper">
@@ -513,14 +521,6 @@ class EditModal extends Component {
                               onClick={this.deleteCoverLetter}>x</span>}
                         </div>
                     </div>
-                    <label className="inactive-check"
-                        htmlFor="inactive">
-                        <input type="checkbox" id="inactive" name="inactive" 
-                        checked={this.props.job ? this.state.inactive : false}
-                        onChange={e => this.setState(byPropKey('inactive', e.target.checked))}
-                        />
-                        Application closed  
-                    </label>
                     <div className="jobs-input-group">
                       <button className="modal-delete-btn"
                         onClick={this.deleteApplication}>

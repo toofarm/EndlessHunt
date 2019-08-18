@@ -19,6 +19,14 @@ class PasswordChangeForm extends Component {
 
   onSubmit = (event) => {
     const { passwordOne } = this.state
+    event.preventDefault();
+
+    let dataLayer = window.dataLayer || []
+    dataLayer.push({
+      'event': 'profilePageInteraction',
+      'profileAction': 'Change password',
+      'newCredential': null
+    })
 
     auth.doPasswordUpdate(passwordOne)
       .then(() => {
@@ -28,8 +36,6 @@ class PasswordChangeForm extends Component {
       .catch(error => {
         this.setState(byPropKey('error', error))
       });
-
-    event.preventDefault();
   }
 
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { createOneJob, deleteOneJob, addInteraction, toggleUiPanel, deleteWishlistItem } from '../../actions'
-import { formatSalary, byPropKey } from '../../constants/utilities'
+import { formatSalary, byPropKey, controlPanelDatalayerPush } from '../../constants/utilities'
 
 import { connect } from 'react-redux'
 
@@ -83,7 +83,15 @@ class JobAddNew extends Component {
     data['notes'] = this.state.notes
     data['inactive'] = false
     data['fresh'] = true
+    data['heatScore'] = 0
     createJob(id, ref, data)
+
+    controlPanelDatalayerPush(
+      'Add Job Panel', 
+      'Create New Job', 
+      `${this.state.title} / ${this.state.company}`, 
+      data 
+    )
 
     if ( document.getElementById('add-job-resume').files[0] ){
       let resumeFile = document.getElementById('add-job-resume').files[0]
@@ -97,6 +105,8 @@ class JobAddNew extends Component {
 
       users.addCoverLetter(id, ref, newCoverLetterPath.fullPath)
     }
+
+
 
     // Check if the posting was created from a wishlist item; if so, delete the wishlist item as the new job entry is created
     if (this.props.data) {
@@ -154,6 +164,10 @@ class JobAddNew extends Component {
 
     if (document.getElementById('add-job-resume').files[0]) {
 
+      this.setState({
+        resumeFilename: "Uploading resume..."
+      })
+
       let file = document.getElementById('add-job-resume').files[0]
 
       var newPath = storage.resumes.child(jobId + '/' + file.name)
@@ -173,6 +187,11 @@ class JobAddNew extends Component {
     let jobId = this.state.newRef
 
     if (document.getElementById('add-job-coverLetter').files[0]){
+
+      this.setState({
+        coverLetterFilename: "Uploading cover letter..."
+      })
+
       let file = document.getElementById('add-job-coverLetter').files[0]
 
       var newPath = storage.coverletters.child(jobId + '/' + file.name)
@@ -214,6 +233,12 @@ class JobAddNew extends Component {
     let jobId = this.state.newRef
     
     sendDelete(userId, jobId)
+    controlPanelDatalayerPush(
+      'Add Job Panel',
+      'Cancel Job Application', 
+      this.state.title,
+      this.state.company
+    )
     this.closePanel()
   }
 
@@ -241,7 +266,7 @@ class JobAddNew extends Component {
     }
   }
 
-  componentDidMount () { 
+  componentDidMount () {  
     if (this.props.data) {
       this.setState({
         company: this.props.data.company,

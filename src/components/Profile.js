@@ -66,25 +66,31 @@ export class Profile extends Component {
                 showForgotPw: false,
                 showUsernameChange: true
             })
-        } else {
+        } else { 
             this.setState({
                 showUsernameChange: false
             })
         }
     }
 
-    componentDidMount (props, prevProps) {
+    componentDidMount () {
         const { getOurUser } = this.props
         document.title = "Profile | The Endless Hunt"
+            if (this.props.user) {
+                // No op
+             } else if (this.props.authUser &&
+                 this.state.authUser === false) {    
+                 getOurUser(this.props.authUser.uid)
+                 this.setState({
+                     authUser: true
+                 })
+             }
+    }
 
-        if (this.props.user) {
-           // No op 
-        } else if (this.props.authUser &&
-            this.state.authUser === false) {
-            getOurUser(this.props.authUser.uid)
-            this.setState({
-                authUser: true
-            })
+    componentDidUpdate(props, prevProps) {
+        if (props !== prevProps &&
+            this.props.user) {
+            console.log(this.props.user)
         }
     }
 
@@ -130,8 +136,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     getOurUser: (id) => dispatch(getUser(id))
 });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Profile)
 
 const authCondition = (authUser) => !!authUser
 

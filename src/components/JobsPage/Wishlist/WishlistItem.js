@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { updateWishlistItem, deleteWishlistItem, toggleUiPanel } from '../../../actions'
 import { connect } from 'react-redux'
 import { byPropKey } from '../../../constants/utilities'
+import { controlPanelDatalayerPush } from '../../../constants/utilities'
 
 const INITIAL_STATE = {
   link: '',
@@ -42,6 +43,12 @@ class WishlistItem extends Component {
     data['title'] = this.state.title
     data['date'] = this.props.item.date
     updateItem(id, ref, data)
+    controlPanelDatalayerPush(
+        'Wishlist',
+        'Update Wishlist item',
+        this.state.link,
+        data
+    )
     this.setState({
         readTitle: true,
         readCompany: true,
@@ -56,6 +63,12 @@ class WishlistItem extends Component {
     data['company'] = this.state.company
     data['title'] = this.state.title
     data['ref'] = this.props.reference
+    controlPanelDatalayerPush(
+        'Wishlist',
+        'Apply from Wishlist',
+        this.state.link,
+        data
+    )
     togglePanels("addNew", data)
   }
 
@@ -64,13 +77,22 @@ class WishlistItem extends Component {
       let id = this.props.userId
       let ref = this.props.reference
       deleteItem(id, ref)
+      controlPanelDatalayerPush(
+          'Wishlist',
+          'Delete Wishlist Item',
+          this.state.link
+      )
   }
 
   componentDidMount () {
+      const months = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+      let dateCreated = new Date(this.props.item.date)
+      let day = dateCreated.getDate(), month = months[dateCreated.getMonth()], year = dateCreated.getFullYear()
       this.setState({
           link: this.props.item.url,
           company: this.props.item.company,
-          title: this.props.item.title
+          title: this.props.item.title,
+          date: `${day} ${month}, ${year}`
       })
   }
 
@@ -99,6 +121,10 @@ class WishlistItem extends Component {
                     onDoubleClick={() => this.setState(byPropKey('readLink', false))}
                     onChange={e => this.setState(byPropKey('link', e.target.value))}
                     onBlur={this.sendUpdate} />
+            </div>
+            <div className="wishlist-input">
+                <label>Date added</label>
+                <span className="wishlist-date">{this.state.date}</span>
             </div>
         </div>
         <div className="wishlist-item-btns">

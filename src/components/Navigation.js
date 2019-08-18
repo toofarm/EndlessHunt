@@ -27,11 +27,11 @@ const Navigation = ({ authUser, location }) =>
 
 const NavigationAuth = ({ location }) => 
         <ul className="main-nav desktop">
-            <li className={location.pathname === "/jobs" ? "current-page" : 
-                location.pathname === "/" ? "current-page" : "" }><Link to={routes.ACCOUNT}>Jobs</Link></li>
-            <li className={location.pathname === "/stats" ? "current-page" : ""}><Link to={routes.STATS}>Stats</Link></li>
-            <li className={location.pathname === "/profile" ? "current-page" : ""}><Link to={routes.PROFILE}>Profile</Link></li>
-            <li><SignOutButton /></li>
+            <li className={location.pathname === "/jobs" ? "current-page nav-link" : 
+                location.pathname === "/" ? "current-page nav-link" : "nav-link" }><Link to={routes.ACCOUNT}>Jobs</Link></li>
+            <li className={location.pathname === "/stats" ? "current-page nav-link" : "nav-link"}><Link to={routes.STATS}>Stats</Link></li>
+            <li className={location.pathname === "/profile" ? "current-page nav-link" : "nav-link"}><Link to={routes.PROFILE}>Profile</Link></li>
+            <li className="nav-link"><SignOutButton /></li>
         </ul>
 
 const mapStateToProps = (state) => ({

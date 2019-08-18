@@ -39,6 +39,12 @@ class SignUpForm extends Component {
       const {
         history
       } = this.props
+
+      let dataLayer = window.dataLayer || []
+      dataLayer.push({
+        'event': 'Login',
+        'loginAction': 'SignUp'
+      })
   
       auth.doCreateUserWithEmailAndPassword(email, passwordOne)
         .then(authUser => {

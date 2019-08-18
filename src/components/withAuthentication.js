@@ -17,9 +17,15 @@ const withAuthentication = (Component) => {
         const { onSetAuthUser } = this.props
 
         firebase.auth.onAuthStateChanged(authUser => {
-          authUser
-            ? onSetAuthUser(authUser)
-            : onSetAuthUser(null)
+          let dataLayer = window.dataLayer || []
+          if (authUser) {
+            dataLayer.push({
+              'userId': authUser.l
+            })
+            onSetAuthUser(authUser)
+          } else {
+            onSetAuthUser(null)
+          }
         })
       }
 

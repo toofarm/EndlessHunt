@@ -22,7 +22,8 @@ class SalaryBar extends Component {
             for (var key in props.jobs) {
                 let obj = {}
                 if (props.jobs[key].salary !== undefined &&
-                    props.jobs[key].salary !== "--") {
+                    props.jobs[key].salary !== "--" &&
+                    props.jobs[key].salary > 0 ) {
                     obj['position'] = props.jobs[key].position
                     obj['salary'] = Number(props.jobs[key].salary.replace(',',''))
                     data.push(obj)

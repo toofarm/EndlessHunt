@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { getJobs, getSomeJobs } from '../../actions'
+import { onceGetUserJobs } from '../../firebase/db/users'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -12,7 +13,8 @@ class SearchForm extends Component {
         this.state = {
             searchEntered: false,
             noResults: false,
-            searchTerm: ''
+            searchTerm: '',
+            inactiveNudge: false
         }
         this.setSearchValue = this.setSearchValue.bind(this)
         this.doSearch = this.doSearch.bind(this)
@@ -30,32 +32,55 @@ class SearchForm extends Component {
     doSearch (e) {
         const { searchJobs } = this.props
         e.preventDefault()
+        let dataLayer = window.dataLayer || []
         let matches = []
         let id = this.props.authUser.uid
         let term = this.state.searchTerm.toLowerCase()
-        let jobs = this.props.jobs
+        let jobs 
+        onceGetUserJobs(id).then(snapshot => {
+            jobs = snapshot.val()
+            for (var key in jobs) {
+                for (var item in jobs[key]) {
+                    if ( typeof jobs[key][item] === "string" ) {
+                        console.log(jobs[key][item].toLowerCase().includes(term))
+                        if (jobs[key][item].toLowerCase().includes(term)) matches.push(key)
+                    }
+                }
+            }
+
+            if ( matches.length ) {
+                searchJobs(id, matches)
+                this.setState({
+                    noResults: false
+                })
+                if (this.props.inactive !== 'showAll') {
+                    this.setState({
+                        inactiveNudge: true
+                    })   
+                }
+            } else {
+                this.setState({
+                    inactiveNudge: false,
+                    noResults: true
+                })
+            }
+
+            //Count the number of matches, which we push to the datalayer
+            var matchCount = {};
+            for (var i = 0; i < matches.length; i++) {
+                matchCount[matches[i]] = 1 + (matchCount[matches[i]] || 0);
+            }
+            dataLayer.push({
+                'event': 'Search',
+                'searchTerm': term,
+                'matches': Object.keys(matchCount).length
+            })
+        }).catch(err => {
+            console.log(err)
+        })
         this.setState({
             searchEntered: true
         })
-        for (var key in jobs) {
-            for (var item in jobs[key]) {
-                if ( typeof jobs[key][item] === "string" ) {
-                    if (jobs[key][item].toLowerCase().includes(term)) matches.push(key)
-                }
-            }
-        }
-
-        if ( matches.length > 0 ) {
-            searchJobs(id, matches)
-            this.setState({
-                noResults: false
-            })
-        } else {
-            this.setState({
-                noResults: true
-            })
-        }
-
     }
 
     reset (e) {
@@ -66,7 +91,8 @@ class SearchForm extends Component {
         this.setState({
             searchEntered: false,
             noResults: false,
-            searchTerm: ''
+            searchTerm: '',
+            inactiveNudge: false
         })
     }
 
@@ -85,20 +111,23 @@ class SearchForm extends Component {
                     onChange={this.searchCheck}
                     onSubmit={(e) => this.doSearch(e)}>
                         {!this.state.searchEntered ?
-                            <button className="search-btn">
+                            <div className="search-btn">
                                 <FontAwesomeIcon icon={faSearch} /> 
-                            </button> : 
-                            <button className="search-btn"
+                            </div> : 
+                            <div className="search-btn"
                                 onClick={(e) => this.reset(e)}>
                                 <FontAwesomeIcon icon={faTimes} /> 
-                            </button> }
+                            </div> }
                     <input type="text" id="jobs-search" name="jobs-search" 
                         placeholder="Search jobs"
-                        onChange={(e) => this.setSearchValue(e)} />
+                        onChange={(e) => this.setSearchValue(e)} value={this.state.searchTerm} />
                 </form>
                 {this.state.noResults && <div className="results-msg">
-                    Uh-oh! Noting in your job apps matched that search
+                    Nothing in your job applications matched that search
                 </div>}
+                {this.state.inactiveNudge && <div className="results-msg">
+                    Some results maybe be hidden because of the active sorting preferences
+                </div>}            
             </div>
         )
     }
@@ -106,7 +135,8 @@ class SearchForm extends Component {
 
 const mapStateToProps = (state) => ({
     jobs: state.jobsState.jobs,
-    authUser: state.sessionState.authUser
+    authUser: state.sessionState.authUser,
+    inactive: state.inactiveState.inactiveState
   });
   
   const mapDispatchToProps = (dispatch) => ({

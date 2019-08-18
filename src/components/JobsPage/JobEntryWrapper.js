@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getInteractions, editOneJob } from "../../actions";
 
-import { one_day } from '../../constants/utilities'
+import { one_day, jobPanelDatalayerPush } from '../../constants/utilities'
 
 import JobEntry from "./JobEntry";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 
 import { SlideDown } from "react-slidedown";
 import "../../../node_modules/react-slidedown/lib/slidedown.css";
@@ -17,10 +20,14 @@ class JobEntryWrapper extends Component {
       dotColor: {
         backgroundColor: "#DDD"
       },
+      arrowColor: {
+        color: "#82C91D"
+      },
       flag: false,
       fresh: true,
       interval: 0,
-      counter: 0
+      counter: 0,
+      heatCondition: false
     };
     this.toggleEntry = this.toggleEntry.bind(this);
     this.checkInteractionDate = this.checkInteractionDate.bind(this)
@@ -28,11 +35,15 @@ class JobEntryWrapper extends Component {
   }
 
   toggleEntry() {
+    let jobTitle = this.props.job.position 
+    let jobCompany = this.props.job.company
     if (this.state.showFullEntry === false) {
+      jobPanelDatalayerPush('Open Job Accordion', jobTitle, jobCompany)
       this.setState({
         showFullEntry: true
       });
     } else {
+      jobPanelDatalayerPush('Close Job Accordion', jobTitle, jobCompany)
       this.setState({
         showFullEntry: false
       });
@@ -62,11 +73,32 @@ class JobEntryWrapper extends Component {
             fresh: true
         })
     }
+    // Check for jobs with multiple interactions. Mark these with the 'active' icon and set appropriate color
+    if (Object.keys(interactions).length > 1 &&
+        data.inactive === false) {
+        this.setState({
+          heatCondition: true
+        })
+        if (Object.keys(interactions).length > 3) {
+          this.setState({
+            arrowColor: { color: 'rgb(67, 109, 5)' }
+          })
+        } else if (Object.keys(interactions).length > 2) {
+          this.setState({
+            arrowColor: { color: 'rgb(103, 165, 9)' }
+          })
+        }
+      }
   }
 
   handleNudgeResponse (e, order) {
     // Stop propagation to prevent drawer from opening
     e.stopPropagation()
+    let jobTitle = this.props.job.position 
+    let jobCompany = this.props.job.company
+    let userAction = order === 'inactive' ? 'Deactivate' : 'Dismiss'
+    let jobPanelAction = `Address Nudge - ${userAction}`
+    jobPanelDatalayerPush(jobPanelAction, jobTitle, jobCompany)
     const { editJob } = this.props
     let id = this.props.userId
     let jobId = this.props.id
@@ -117,9 +149,17 @@ class JobEntryWrapper extends Component {
     getTimelineEvents(id)
   }
 
-  // Instatiate the interactions object
+  // Instantiate the interactions object
   componentWillReceiveProps(props) {
     let jobId = this.props.id;
+
+    if (props.data) {
+      if (props.data.inactive === true) {
+        this.setState({
+          heatCondition: false
+        })
+      }
+    }
 
     if (props.interactions) {
       let allInteractions = props.interactions;
@@ -147,6 +187,9 @@ class JobEntryWrapper extends Component {
       >
         <div className="job-entry-header" onClick={this.toggleEntry}>
           <span className="confidence-dot" style={this.state.dotColor} />
+          {this.state.heatCondition && 
+          <FontAwesomeIcon icon={faAngleDoubleUp} className="dbl-up-icon" 
+            style={this.state.arrowColor} />}
           <span className="job-position">{this.props.job.position}</span>
           <span className="divider"> / </span>
           <span className="job-company">{this.props.job.company}</span>

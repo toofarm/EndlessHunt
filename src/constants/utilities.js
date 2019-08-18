@@ -20,3 +20,27 @@ export const byPropKey = (propertyName, value) => () => ({
 
 // Create one day in milliseconds
 export const one_day = 1000*60*60*24
+
+// Datalayer pushes for job panel actions
+export const jobPanelDatalayerPush = (jobPanelAction, jobTitle, jobCompany, meta) => {
+  let dataLayer = window.dataLayer || []
+  dataLayer.push({
+    'event': 'Job Panel Interaction',
+    jobPanelAction,
+    jobTitle,
+    jobCompany,
+    data: {...meta}
+  })
+}
+
+// Datalayer pushes for control panel actions
+export const controlPanelDatalayerPush = ( panelName, panelAction, panelParam, meta) => {
+  let dataLayer = window.dataLayer || []
+  dataLayer.push({
+    'event': 'Control Panel Interaction',
+    panelName,
+    panelAction,
+    panelParam,
+    data: {...meta}
+  })
+}

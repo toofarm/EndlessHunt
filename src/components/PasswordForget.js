@@ -24,6 +24,13 @@ class PasswordForgetForm extends Component {
 
   onSubmit = (event) => {
     const { email } = this.state
+    event.preventDefault()
+    let dataLayer = window.dataLayer || []
+    dataLayer.push({
+      'event': 'profilePageInteraction',
+      'profileAction': 'Forgot password',
+      'newCredential': null
+    })
 
     auth.doPasswordReset(email)
       .then(() => {
@@ -33,8 +40,6 @@ class PasswordForgetForm extends Component {
       .catch(error => {
         this.setState(byPropKey('error', error))
       });
-
-    event.preventDefault()
   }
 
   render() {

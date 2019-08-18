@@ -4,6 +4,8 @@ import { addWishlistItem } from '../../../actions'
 
 import { connect } from 'react-redux'
 
+import { controlPanelDatalayerPush } from '../../../constants/utilities'
+
 import { SlideDown } from 'react-slidedown'
 import "../../../../node_modules/react-slidedown/lib/slidedown.css"
 
@@ -40,6 +42,12 @@ class AddWishlistItem extends Component {
     data['title'] = this.state.title
     data['date'] = date
     addItem(id, data)
+    controlPanelDatalayerPush(
+      'Wishlist', 
+      'Add Wishlist item', 
+      data.url, 
+      data
+    )
     this.toggleSlideDown()
   }
 

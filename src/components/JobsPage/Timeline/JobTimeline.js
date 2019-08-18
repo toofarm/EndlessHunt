@@ -26,10 +26,17 @@ class JobTimeline extends Component {
         
         if (props.interactions) {
             let allInteractions = props.interactions
-            for (var key in allInteractions) {
+            for (const key in allInteractions) {
                 if (key === jobId) {
+                    let orderedInteractions = []
+                    for (const interaction in allInteractions[key]) {
+                        orderedInteractions.push(allInteractions[key][interaction])
+                    }
+                    orderedInteractions.sort((a, b) => {
+                        return new Date(a.date) - new Date(b.date)
+                    })
                     this.setState({
-                        interactions: allInteractions[key]
+                        interactions: orderedInteractions
                     })
                 }
             }

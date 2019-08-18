@@ -72,6 +72,9 @@
         border-radius: 7.5px;
         background-color: #ddd;
      }
+     .dbl-up-icon {
+        margin: 0 0 0 0.4em;
+     }
     .divider {
         font-weight: bold;
         font-size: 25px;
@@ -96,10 +99,10 @@
             .inactive-btn {
                 border-radius: 4px;
                 padding: 3px;
-                border: 2px solid transparent;
+                border: 1px solid transparent;
             }
             .inactive-btn:hover {
-                border: 2px solid $puceText;
+                border: 1px solid $puceText;
             }
         }
         .job-entry-date {

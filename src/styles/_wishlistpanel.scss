@@ -58,7 +58,7 @@
     margin-bottom: 1em;
     .wishlist-items-wrap {
         display: inline-flex;
-        width: 80%;
+        width: 85%;
         .wishlist-input {
             margin: 0 0.4em;
             flex-grow: 1;
@@ -78,6 +78,16 @@
             }
             input:read-only {
                 background: none;
+            }
+            .wishlist-date {
+                border: none;
+                color: #666;
+                border-style: solid;
+                padding: 4px 3px 3px 3px;
+                border: none;
+                margin: 0;
+                width: 100%;
+                display: inline-block;
             }
         }
     }

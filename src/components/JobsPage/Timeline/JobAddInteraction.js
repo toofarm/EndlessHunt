@@ -3,6 +3,8 @@ import { addInteraction, editOneJob } from '../../../actions'
 
 import { connect } from 'react-redux'
 
+import { jobPanelDatalayerPush } from '../../../constants/utilities'
+
 import { SlideDown } from 'react-slidedown'
 import "../../../../node_modules/react-slidedown/lib/slidedown.css"
 
@@ -100,6 +102,9 @@ class JobAddInteraction extends Component {
             date: this.state.dateSanitized,
             notes: interactionNotes
         }
+        let action = `Add Timeline Interaction - ${interactionType}`
+
+        jobPanelDatalayerPush(action, this.props.title, this.props.company )
 
         if ( interactionType === 'Rejected' ) {
             users.getOneJob(id, jobId).then( snapshot => {

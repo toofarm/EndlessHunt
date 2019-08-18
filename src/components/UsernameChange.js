@@ -22,6 +22,12 @@ class UsernameChange extends Component {
 
     let id = this.props.authUser.uid
     let username = this.state.username
+    let dataLayer = window.dataLayer || []
+    dataLayer.push({
+      'event': 'profilePageInteraction',
+      'profileAction': 'Change user name',
+      'newCredential': username
+    })
 
     sendNewUsername(id, username)
 

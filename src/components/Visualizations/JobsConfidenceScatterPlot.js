@@ -115,10 +115,10 @@ class ConfidenceScatterPlot extends Component {
                 tooltip.transition()
                     .duration(200)
                     .style("opacity", .9);
-                tooltip.html(d.position + "<br/> <span class='sp-tp-label'>(Confidence: " + xValue(d) 
+                tooltip.html(d.position + "<br/><i>" + d.company + "</i><br/> <span class='sp-tp-label'>(Confidence: " + xValue(d) 
                 + ", Days: " + yValue(d) + ")</span>")
                     .style("left", (d3.event.pageX + 20) + "px")
-                    .style("top", (d3.event.pageY - 955) + "px");
+                    .style("top", (d3.event.offsetY + 75) + "px");
             })
             .on("mouseout", function(d) {
                 tooltip.transition()
@@ -133,16 +133,17 @@ class ConfidenceScatterPlot extends Component {
             this.state.flag) {
             var ourJobs = {}
             var finalJobs = []
-            for (var key in props.jobs) {
+            for (const key in props.jobs) {
                 let newJob = {}
                 newJob["position"] = props.jobs[key].position
+                newJob["company"] = props.jobs[key].company
                 newJob["confidence"] = Number(props.jobs[key].confidence)
                 newJob["days"] = 0
                 ourJobs[key] = newJob
             }
-            for (var key2 in props.interactions) {
+            for (const key2 in props.interactions) {
                 let timesHolder = []    
-                for (var key3 in props.interactions[key2]) {
+                for (const key3 in props.interactions[key2]) {
                     timesHolder.push(key3)
                 }
                 timesHolder.sort()
@@ -154,7 +155,7 @@ class ConfidenceScatterPlot extends Component {
                     delete ourJobs[key2]
                 }
             }
-            for (var key4 in ourJobs) {
+            for (const key4 in ourJobs) {
                 finalJobs.push(ourJobs[key4])
             }
             this.makeScatterPlot(finalJobs)

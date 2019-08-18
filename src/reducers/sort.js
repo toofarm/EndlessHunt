@@ -1,21 +1,19 @@
 const INITIAL_STATE = {
-    order: null,
-    data: undefined
+    sortOrder: null
   };
   
   const applySetOrder = (state, action) => ({
     ...state,
-    order: action.order,
-    data: action.data
+    sortOrder: action.order
   });
   
-  function controlsReducer(state = INITIAL_STATE, action) {
+  function sortOrderReducer(state = INITIAL_STATE, action) {
     switch(action.type) {
-      case 'TOGGLE_UI_CONTROLS' : {
+      case 'SET_SORT_STATE' : {
         return applySetOrder(state, action);
       }
       default : return state; 
     }
   }
   
-  export default controlsReducer;
+  export default sortOrderReducer;

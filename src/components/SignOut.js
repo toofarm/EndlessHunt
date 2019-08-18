@@ -18,6 +18,10 @@ class SignOutButton extends Component {
       history,
     } = this.props
   
+    // Reset user ID on sign-out, per GA specs
+    let dataLayer = window.dataLayer || []
+    dataLayer.push({'userId' : null})
+
     firebase.auth.signOut()
     this.props.history.push(routes.HOME)
   }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getJobs, deleteOneJob } from "../../actions";
+import { getJobs, deleteOneJob, getInactiveState } from "../../actions";
 
 import JobEntryWrapper from "./JobEntryWrapper";
 import JobAddNew from "./JobAddNew";
@@ -8,6 +8,8 @@ import EditModal from "./EditModal";
 import InteractionEditModal from "./Timeline/InteractionEditModal";
 import WishlistPanel from "./Wishlist/WishlistPanel";
 import spinner from "../../static/img/spin-loader.png";
+
+import { jobPanelDatalayerPush } from '../../constants/utilities'
 
 import { connect } from "react-redux";
 import { SlideDown } from "react-slidedown";
@@ -42,18 +44,23 @@ class JobsRoll extends Component {
     let jobId = e.target.dataset.id;
     let userId = this.state.userId;
 
+    let jobTitle = this.props.jobs[jobId].position
+    let jobCompany = this.props.jobs[jobId].company
+    jobPanelDatalayerPush('Delete Job', jobTitle, jobCompany)
+
     if (window.confirm("Sure you want to delete this applictation?")) {
       sendDelete(userId, jobId);
     }
   }
 
   componentDidMount() {
-    const { getUserJobs } = this.props;
+    const { getUserJobs, getInactiveState } = this.props;
     let id = this.props.authUser.uid;
     this.setState({
       userId: id
     })
     getUserJobs(id)
+    getInactiveState(id)
     if (
       this.props.jobs === null ||
       this.props.jobs
@@ -64,9 +71,7 @@ class JobsRoll extends Component {
     }
   }
 
-  componentWillReceiveProps(props) {
-    console.log('Logging order from Jobs Roll')
-    console.log(props.order)
+  componentDidUpdate(prevProps, props) {
     if (props.jobs) {
       this.setState({
         loading: false
@@ -114,7 +119,7 @@ class JobsRoll extends Component {
                 />
               ))
             ) : (
-              <div className="welcome-msg">
+              <div className="welcome-msg"> 
                 Add some applications to get started!
                 <FontAwesomeIcon icon={faThumbsUp} className="welcome-icon" />
               </div>
@@ -135,6 +140,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getUserJobs: id => dispatch(getJobs(id)),
+  getInactiveState: id => dispatch(getInactiveState(id)),
   sendDelete: (userId, jobId) => dispatch(deleteOneJob(userId, jobId))
 });
 

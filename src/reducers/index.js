@@ -7,6 +7,7 @@ import interactionsReducer from './interactions';
 import inactiveStateReducer from './inactivestate';
 import modalStateReducer from './modal'
 import wishlistReducer from './wishlist';
+import sortOrderReducer from './sort';
 
 const rootReducer = combineReducers({
   sessionState: sessionReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   interactionsState: interactionsReducer,
   inactiveState: inactiveStateReducer,
   modalState: modalStateReducer,
-  wishlistState: wishlistReducer
+  wishlistState: wishlistReducer,
+  sortState: sortOrderReducer
 });
 
 export default rootReducer;

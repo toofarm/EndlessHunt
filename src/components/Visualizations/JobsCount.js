@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { one_day } from '../../constants/utilities'
 
 class JobsCount extends Component {
     constructor(props) {
@@ -8,7 +9,8 @@ class JobsCount extends Component {
             count: '',
             days: 0,
             ratio: '',
-            flag: true
+            flag: true,
+            responses: 0
         }
     }
 
@@ -25,9 +27,8 @@ class JobsCount extends Component {
             let current = new Date()
             let currentUtc = Date.parse(current)
             let timeSpan = currentUtc - dates[0]
-            let one_day = 1000*60*60*24
             timeSpan = Math.round(timeSpan/one_day)
-            let ratio = '' + numInactive + ' / ' + numJobs + ''
+            let ratio = `${numInactive} / ${numJobs}`
             this.setState({
                 count: numJobs,
                 days: timeSpan,
@@ -47,9 +48,16 @@ class JobsCount extends Component {
                             's' :
                             ''}.
                 </h3>
-                <div className="inactive-ratio">
-                    Inactive v. active ratio: <span className="ratio-text">{this.state.ratio}</span>
+                <div className="info-subhead">
+                    Inactive v. active ratio: <span className="subhead-text">{this.state.ratio}</span>
                 </div>
+                
+                {/* 
+                We're going to add another node to the job object that indicates whether or not it's 'hot'. This will be better than calculating based on number of interactions.
+
+                <div className="info-subhead">
+                    Number of jobs with responses: <span className="subhead-text">{this.state.ratio}</span>
+                </div> */}
             </div>
         )
     }

@@ -9,13 +9,13 @@ const setUserJobs = (state, action) => ({
 
   function jobsReducer(state = INITIAL_STATE, action) {
     switch(action.type) {
-      case 'SET_USER_JOBS': {
+      case 'APPLY_USER_JOBS': {
         return setUserJobs(state, action);
       }
-      case 'REORDER_USER_JOBS': {
-        switch (action.order) {
+      case 'SET_USER_JOBS': {
+        switch (action.sort) {
           case 'alpha-company-asc': {
-            let jobs = action.jobs
+            let jobs = action.jobs 
             let jobsReordered = {}
             let newKeys = Object.keys(jobs)
               .sort((a,b) => {
@@ -144,7 +144,6 @@ const setUserJobs = (state, action) => ({
             action.jobs = jobsReordered
           }
           break
-          default : return state;
         }
         return setUserJobs(state, action);
       }

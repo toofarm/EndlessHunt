@@ -8,7 +8,11 @@ export const doCreateUser = (id, username, email) =>
   db.ref(`users/${id}`).set({
     username,
     email,
-    applications: {}
+    applications: {},
+    sortPreferences: {
+      sort: null,
+      inactive: null
+    }
   })
 
 export const getOneUser = (id) =>
@@ -18,6 +22,25 @@ export const updateUsername = (id, username) =>
   db.ref(`users/${id}`).update({
       username
   })
+
+// Sort/inactive preferences
+ 
+export const updateSortPreference = (id, sort) =>
+  db.ref(`users/${id}/sortPreferences`).update({
+      sort
+  })
+
+export const updateInactivePreference = (id, inactive) =>
+  db.ref(`users/${id}/sortPreferences`).update({
+      inactive
+  })
+
+ export const getSortPreference = (id) =>
+  db.ref(`users/${id}/sortPreferences/sort`).once('value')
+
+export const getInactivePreference = (id) =>
+  db.ref(`users/${id}/sortPreferences/inactive`).once('value')
+
 
 // Jobs 
 

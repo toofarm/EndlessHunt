@@ -22,13 +22,14 @@
             border: 1px solid $textLight;
             background-color: #fff;
             overflow: hidden;
-            button {
+            .search-btn {
                 background: none;
                 border: none;
                 position: absolute;
-                top: 0.27em;
+                left: 0.5em;
+                display: inline;
             }
-            button:hover {
+            .search-btn:hover {
                 cursor: pointer;
             }
             #jobs-search {
@@ -58,6 +59,22 @@
     }
     h3.highlight:hover {
         color: $lighterBlue;
+    }
+    .clear-sort-prompt {
+        margin: -0.5em 1em 1em 1em;
+        opacity: 0.8;
+        transition: all 0.2s ease-in-out;
+        svg {
+            margin-right: 0.4em;
+            display: none;
+        }
+    }
+    .clear-sort-prompt:hover {
+        cursor: pointer;
+        color: $lighterBlue;
+        svg {
+            display: inline-block;
+        }
     }
     .delete-all:hover {
         color: $red;

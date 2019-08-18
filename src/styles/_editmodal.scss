@@ -33,7 +33,60 @@ h2 {
 
 .modal-form-wrap {
     .inactive-check {
-        font-size: 1.1em;
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        input  {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+          }
+          .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            display: none;
+            position: absolute;
+            content: "";
+            transform: rotate(45deg);
+          }
+      }
+      .inactive-check:hover {
+          .checkmark {
+            background-color: #ccc;
+          }
+      }
+    .inactive-check {
+        input:checked ~
+        .checkmark {
+            background-color: #2196F3;
+        }
+    }
+    .inactive-check {
+        input:checked ~
+        .checkmark:after {
+          display: block;
+        }
     }
     #inactive {
         margin-right: 1em;
@@ -70,6 +123,7 @@ h2 {
         border-radius: 4px;
         padding: 7px;
         transition: 0.2s all;
+        font-size: 1.3em;
     }
     .modal-submit-btn:hover {
         background-color: $base;
@@ -77,13 +131,13 @@ h2 {
     }
     .modal-cancel-btn {
         display: inline-block;
-        font-size: 16px;
         color: $lighterBlue;
         padding: 5px 5px 5px 1em;
         border-radius: 4px;
         transition: 0.3s all;
         border: none;
         background: none;
+        font-size: 1.3em;
     }
     .modal-cancel-btn:hover {
         color: $base;
