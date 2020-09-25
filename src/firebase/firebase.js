@@ -5,13 +5,7 @@ import 'firebase/database'
 import 'firebase/storage'
 
 var config = {
-    apiKey: "AIzaSyBiDdge5fKT51vEWUH1S-6JjtGB8zUzKhM",
-    authDomain: "the-hunt-c4a4c.firebaseapp.com",
-    databaseURL: "https://the-hunt-c4a4c.firebaseio.com/",
-    projectId: "the-hunt-c4a4c",
-    storageBucket: "the-hunt-c4a4c.appspot.com",
-    messagingSenderId: "388329766106",
-    appId: "1:388329766106:web:23edaa669efddc7b"
+    REPLACE_WITH_YOUR_CONFIG_OBJECT
   }
 
   if (!firebaseApp.apps.length) {
