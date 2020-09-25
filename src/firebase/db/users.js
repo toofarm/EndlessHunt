@@ -127,7 +127,7 @@ export const updateInteraction = (id, application, ref, data) =>
     type: data.type,
     date: data.date,
     notes: data.notes
-  })
+  }) 
 
 export const deleteInteraction = (id, application, ref) => 
   db.ref(`users/${id}/interactions/${application}/${ref}`).remove()

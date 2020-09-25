@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSuitcase, faSort, faChartPie } from '@fortawesome/free-solid-svg-icons'
 
 const INITIAL_STATE = {
-    error: null,
     slideNum: 1,
     picList: [],
     showLoginPanel: false

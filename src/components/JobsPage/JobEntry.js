@@ -166,6 +166,7 @@ class JobEntry extends Component {
               <JobTimeline
                 id={this.props.userId}
                 jobId={this.props.id}
+                interactions={this.props.interactions}
                 />
               <JobAddInteraction 
                 id={this.props.userId} 
@@ -189,7 +190,8 @@ class JobEntry extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  modalState: state.modalState.jobModal
+  modalState: state.modalState.jobModal,
+  interactions: state.interactionsState.interactions
 });
 
 const mapDispatchToProps = (dispatch) => ({

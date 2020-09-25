@@ -150,31 +150,35 @@ class JobEntryWrapper extends Component {
   }
 
   // Instantiate the interactions object
-  componentWillReceiveProps(props) {
-    let jobId = this.props.id;
+  componentDidUpdate(prevProps, props) {
 
-    if (props.data) {
-      if (props.data.inactive === true) {
-        this.setState({
-          heatCondition: false
-        })
-      }
-    }
+    if (prevProps !== props) {
+      let jobId = this.props.id;
 
-    if (props.interactions) {
-      let allInteractions = props.interactions;
-      for (var key in allInteractions) {
-        if (key === jobId) {
-          this.setState(
-            {
-              interactions: allInteractions[key],
-              flag: true
-            },
-            () => this.checkInteractionDate(this.state.interactions)
-          );
+      if (props.data) {
+        if (props.data.inactive === true) {
+          this.setState({
+            heatCondition: false
+          })
         }
       }
-    }
+
+      if (props.interactions) {
+        let allInteractions = props.interactions;
+        for (var key in allInteractions) {
+          if (key === jobId) {
+            this.setState(
+              {
+                interactions: allInteractions[key],
+                flag: true
+              },
+              () => this.checkInteractionDate(this.state.interactions)
+            );
+          }
+        }
+      }
+    }   
+    
   }
 
   render() {

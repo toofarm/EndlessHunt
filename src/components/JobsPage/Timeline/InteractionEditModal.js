@@ -131,17 +131,17 @@ class InteractionModal extends Component {
     Modal.setAppElement("#app");
   }
 
-  componentWillReceiveProps(props) {
-    if (props.interaction !== null) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.interaction !== this.props.interaction &&
+        this.props.interaction) {
       this.setState(
         {
-          interaction: props.interaction,
-          dateSanitized: props.interaction.date,
-          type: props.interaction.type,
-          typeHidden: props.interaction.type,
-          notes: props.interaction.notes
-        },
-        () => console.log(this.state.interaction)
+          interaction: this.props.interaction,
+          dateSanitized: this.props.interaction.date,
+          type: this.props.interaction.type,
+          typeHidden: this.props.interaction.type,
+          notes: this.props.interaction.notes
+        }
       );
     }
   }

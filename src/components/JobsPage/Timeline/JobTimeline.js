@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TimelineEvent from './TimelineEvent'
+// import TimelineEvent from './TimelineEventHooks'
 import { getInteractions } from '../../../actions'
 
 import spinner from '../../../static/img/spin-loader.png'
@@ -16,30 +17,33 @@ class JobTimeline extends Component {
     }
 
     componentDidMount() {
-        const { getTimelineEvents } = this.props
-        let id = this.props.id
-        getTimelineEvents(id)
+        let jobId = this.props.jobId
+        let allInteractions = this.props.interactions
+        let ourInteractions = {}
+        for (const key in allInteractions) {
+            if (key === jobId) {
+                ourInteractions = allInteractions[key]
+            }
+        }
+        this.setState({
+            interactions: ourInteractions
+        }, () => console.log(this.state.interactions))
     }
 
-    componentWillReceiveProps (props) {
-        let jobId = this.props.jobId
-        
-        if (props.interactions) {
-            let allInteractions = props.interactions
+    componentDidUpdate (prevProps) {
+
+        if (prevProps !== this.props) {
+            let jobId = this.props.jobId
+            let allInteractions = this.props.interactions
+            let ourInteractions = {}
             for (const key in allInteractions) {
                 if (key === jobId) {
-                    let orderedInteractions = []
-                    for (const interaction in allInteractions[key]) {
-                        orderedInteractions.push(allInteractions[key][interaction])
-                    }
-                    orderedInteractions.sort((a, b) => {
-                        return new Date(a.date) - new Date(b.date)
-                    })
-                    this.setState({
-                        interactions: orderedInteractions
-                    })
+                    ourInteractions = allInteractions[key]
                 }
             }
+            this.setState({
+                interactions: ourInteractions
+            }, () => console.log(this.state.interactions))
         }
     }
 
@@ -47,7 +51,7 @@ class JobTimeline extends Component {
         return (
             <div className="timeline-wrap col-md-12">
                 <div className="job-item-label">Timeline</div>
-                {!!this.state.interactions ?
+                {this.state.interactions ?
                     <div>
                         {Object.keys(this.state.interactions).map(key =>
                             <TimelineEvent key={key}

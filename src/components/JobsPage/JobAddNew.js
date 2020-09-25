@@ -143,8 +143,8 @@ class JobAddNew extends Component {
   }
 
   selectManage (value) {
-    this.setState(byPropKey('source', value))
-    if (document.getElementById('jobs-source').value === 'other') {
+    this.setState(byPropKey('source', value), () => console.log(this.state.source))
+    if (value === 'other') {
       this.setState({
         showCustomInput: true
       })
@@ -325,10 +325,10 @@ class JobAddNew extends Component {
                 <div className="jobs-input-group">
                   <div className="jobs-dropdown">
                         <select
+                          value={this.state.source}
                           onChange={e => this.selectManage(e.target.value)}
                           name="jobs-source"
-                          id="jobs-source"
-                          defaultValue="--">
+                          id="jobs-source">
                           <option value="--" disabled>Job Source</option>
                           <option value="AngelList">AngelList</option>
                           <option value="CraigsList">Craigslist</option>

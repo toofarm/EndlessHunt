@@ -94,7 +94,7 @@ class JobsRoll extends Component {
           ) : ("")}
         </SlideDown>
         {this.state.loading ? (
-          <div className="loader">
+          <div className="loader"> 
             <img src={spinner} alt="Loading..." className="spin-loader" />
           </div>
         ) : (

@@ -281,8 +281,8 @@ class EditModal extends Component {
     Modal.setAppElement('#app')
   }
 
-  componentWillReceiveProps (props) {
-    // We use the init flag so that state is not reverted on every input change
+  componentDidUpdate (props) {
+    // We use the init flag so that state is not reverted on every input change 
     if (props.job !== null &&
         this.state.initFlag === false) {
         let inactiveState
@@ -530,7 +530,7 @@ class EditModal extends Component {
                 </div>
                 <div className="btn-wrap">
                     <button className="modal-submit-btn" disabled={isInvalid}
-                        onClick={this.submitEdits}>Submit</button>
+                        onClick={this.submitEdits}>Confirm</button>
                     <button className="modal-cancel-btn" 
                         onClick={this.closeModal}>Cancel</button>
                 </div>
